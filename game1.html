@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/normalize.min.css" />
+    <link rel="stylesheet" href="./css/game1.css" />
+    <title>Game1</title>
+  </head>
+  <body>
+    <div id="bg"></div>
+
+    <div id="dialog" class="dialog">
+      <img id="top-arrow" src="./assets/arrow.jpg" alt="" srcset="" />
+      <img id="right-arrow" src="./assets/arrow.jpg" alt="" srcset="" />
+
+      <div id="ellipse" class="ellipse">
+        <input
+          id="inputValue"
+          type="text"
+          value=""
+          placeholder="1~10"
+          maxlength="2"
+          max="10"
+        />
+      </div>
+
+      <div class="east" id="east">
+        <div>东</div>
+        <div>EAST</div>
+      </div>
+      <div class="south" id="south">
+        <div>南</div>
+        <div>SOUTH</div>
+      </div>
+      <div class="west" id="west">
+        <div>西</div>
+        <div>WEST</div>
+      </div>
+      <div class="north" id="north">
+        <div>北</div>
+        <div>NORTH</div>
+      </div>
+    </div>
+
+    <script
+      src="https://unpkg.com/@free-side/audioworklet-polyfill/dist/audioworklet-polyfill.js"
+      type="text/javascript"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+
+    <script src="./js/game1.js"></script>
+  </body>
+</html>

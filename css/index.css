@@ -1,0 +1,50 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    #f7daff -3.82%,
+    #ffe1e8 21.97%,
+    #f1ffca 69.06%,
+    #ffedae 103.82%
+  );
+  overflow: hidden;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  margin-top: 5%;
+  font-family: "Kavoon";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 80px;
+  text-align: center;
+
+  color: #f4b4ff;
+}
+
+.options {
+  margin-top: 8%;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.options .btn {
+  margin-bottom: 72px;
+  text-align: center;
+  background: #fff9f0;
+  border-radius: 20px;
+  width: 658px;
+  height: 109px;
+  line-height: 109px;
+  font-family: "Itim";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  text-decoration: none;
+  color: #000000;
+}

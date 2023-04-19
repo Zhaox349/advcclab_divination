@@ -1,0 +1,110 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffe3c1;
+}
+
+.dialog {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 80%;
+  width: 90%;
+  margin: 0 auto;
+  transform: translate(0, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog .ellipse {
+  position: absolute;
+
+  width: 204px;
+  height: 204px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ellipse input {
+  width: 143px;
+  height: 143px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 145px;
+  text-align: center;
+  color: #000000;
+  border: none;
+  outline: none;
+}
+
+.ellipse input::placeholder {
+  font-size: 60px;
+  line-height: 60px;
+  height: 60px;
+  text-align: center;
+}
+
+#top-arrow {
+  position: absolute;
+  top: -100px;
+  width: 100px;
+  opacity: 0.1;
+  transform: rotate(160deg);
+  transition: all;
+}
+
+#right-arrow {
+  transition: all;
+  position: absolute;
+  right: 0;
+  width: 100px;
+  opacity: 0.1;
+  transform: rotate(-120deg);
+}
+
+.east,
+.south,
+.west,
+.north {
+  font-family: "Kavoon";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 120px;
+  line-height: 150px;
+  text-align: center;
+  color: #b7c9ec;
+  cursor: pointer;
+}
+
+.east {
+  position: absolute;
+  left: 0;
+  top: -100px;
+  transform: rotate(-22deg);
+}
+.south {
+  position: absolute;
+  right: 0;
+  top: -100px;
+  transform: rotate(22deg);
+}
+.west {
+  position: absolute;
+  left: 0;
+  bottom: -100px;
+  transform: rotate(-150deg);
+}
+.north {
+  position: absolute;
+  right: 0;
+  bottom: -100px;
+  transform: rotate(150deg);
+}

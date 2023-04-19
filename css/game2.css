@@ -1,0 +1,32 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffe1e8;
+}
+
+.tips {
+  position: absolute;
+  font-family: "Island Moments";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 90px;
+  line-height: 104px;
+  text-align: center;
+  bottom: 100px;
+  color: #000000;
+  left: 0;
+  right: 0;
+  height: 104px;
+}
+
+.tips .value {
+  color: #ff8989;
+  text-decoration: underline;
+  font-family: "Italianno";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 90px;
+  line-height: 112px;
+  text-align: center;
+  color: #ff8989;
+}
