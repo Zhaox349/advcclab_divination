@@ -32,7 +32,7 @@ function setup() {
   centerFlower = new Flow(
     createVector(width / 2, height / 2 - 100),
     10,
-    "#BA09349C",
+    "#D855BA",
     "#FF00D600",
     230
   );
