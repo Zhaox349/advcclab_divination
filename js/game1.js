@@ -158,18 +158,19 @@ let DATA = {
 function draw() {
   translate(width / 2, height / 2);
   background("#ffe3c1");
+  // console.log(DATA.DIC);
 
   if (
     DATA.count < Number(inputValue) &&
     inputDic != null &&
     myOrientation != null
   ) {
-    if (DATA.DIC == "LEFT-RIGHT") {
+    if (DATA.DIC == "TOP-BOTTOM") {
       const V1 = createVector(0, -1);
       const V2 = createVector(0, 1);
       if (dist(0, 0, 0, center1.y) <= 0) {
         DATA.STATUS = "open";
-        DATA.DIC = "TOP-BOTTOM";
+        DATA.DIC = "LEFT-RIGHT";
       }
       if (dist(0, 0, 0, center1.y) >= H_2) {
         DATA.STATUS = "close";
@@ -205,12 +206,12 @@ function draw() {
       }
     }
 
-    if (DATA.DIC == "TOP-BOTTOM") {
+    if (DATA.DIC == "LEFT-RIGHT") {
       const V1 = createVector(-1, 0);
       const V2 = createVector(1, 0);
       if (dist(0, 0, center3.x, 0) <= 0) {
         DATA.STATUS = "open";
-        DATA.DIC = "LEFT-RIGHT";
+        DATA.DIC = "TOP-BOTTOM";
       }
       if (dist(0, 0, center3.x, 0) >= H) {
         DATA.STATUS = "close";
@@ -265,13 +266,19 @@ function draw() {
       if (inputDic == "LEFT-RIGHT") {
         const finalIndex = orientationMap[myOrientation] + index;
         resultCN = dataText[tmp[finalIndex]];
+        console.log("finalIndex", finalIndex);
       } else {
         index = 0;
         const finalIndex = orientationMap[myOrientation] + index;
         resultCN = dataText[tmp[finalIndex]];
+        console.log("finalIndex", finalIndex);
       }
 
+      console.log("resultCN", resultCN);
       resultEN = game1Data[resultCN];
+
+      console.log("dataText", dataText);
+      console.log("tmp", tmp);
 
       timer = setTimeout(() => {
         location.href = `game1-result.html?count=${inputValue}&orientation=${myOrientation}&result=${encodeURIComponent(
@@ -300,13 +307,13 @@ function draw() {
 
   imageMode(CENTER);
   if (DATA.DIC == "TOP-BOTTOM") {
-    if (center3.x < 0) {
-      image(pg2, 0, 0, dist(0, 0, 0, center3.x) * 2, pg2.height);
+    if (center1.y < 0) {
+      image(pg1, 0, 0, pg1.width, dist(0, 0, 0, center1.y) * 2);
     }
   }
   if (DATA.DIC == "LEFT-RIGHT") {
-    if (center1.y < 0) {
-      image(pg1, 0, 0, pg1.width, dist(0, 0, 0, center1.y) * 2);
+    if (center3.x < 0) {
+      image(pg2, 0, 0, dist(0, 0, 0, center3.x) * 2, pg2.height);
     }
   }
 
@@ -450,16 +457,20 @@ function onMouseMove(event) {
     distanceY <= 0
   ) {
     if (distanceY <= 0) {
+      console.log("上下");
       inputDic = "TOP-BOTTOM";
+      DATA.DIC = "TOP-BOTTOM";
       if (inputValue % 2 == 0) {
-        inputDic = "LEFT-RIGHT";
+        DATA.DIC = "LEFT-RIGHT";
       }
     }
 
     if (distanceX >= container.offsetWidth - slider.offsetWidth - 102) {
+      console.log("左右");
       inputDic = "LEFT-RIGHT";
+      DATA.DIC = "LEFT-RIGHT";
       if (inputValue % 2 == 0) {
-        inputDic = "TOP-BOTTOM";
+        DATA.DIC = "TOP-BOTTOM";
       }
     }
     slider.style.top = `${containerHeight / 2 - 102}px`;

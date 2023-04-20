@@ -22,7 +22,7 @@ body {
 .card {
   position: absolute;
   width: 318px;
-  height: 667px;
+  min-height: 667px;
   top: 199px;
   left: 0;
   right: 0;
@@ -31,7 +31,6 @@ body {
 }
 
 .result {
-  position: absolute;
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
@@ -41,28 +40,23 @@ body {
   color: #b7c9ec;
   width: 175px;
   display: block;
-  left: 0;
-  right: 0;
-  top: 23px;
-  margin: 0 auto;
+  margin: 23px auto 0;
 }
 
 .result2 {
-  position: absolute;
-  width: 247px;
   height: 238px;
   display: block;
+  width: 80%;
   left: 0;
   right: 0;
-  top: 364px;
-  margin: 0 auto;
+  margin: 80px auto;
   font-family: "Kavoon";
   font-style: normal;
   font-weight: 400;
-  font-size: 80px;
+  font-size: 60px;
   line-height: 100px;
   text-align: center;
-
+  word-break: break-word;
   color: #b7c9ec;
 }
 

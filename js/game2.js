@@ -32,7 +32,7 @@ function setup() {
   centerFlower = new Flow(
     createVector(width / 2, height / 2 - 100),
     10,
-    "#D855BA",
+    "#BA09349C",
     "#FF00D600",
     230
   );
@@ -42,7 +42,12 @@ function draw() {
   background("#ffe1e8");
 
   for (let f of bgFlowList) {
+    f.update();
     f.draw();
+    if (frameCount % int(random(100, 300)) == 0) {
+      const FLOWER_COLOR = random(flowColors);
+      f.setColor(color(FLOWER_COLOR.form), color(FLOWER_COLOR.to));
+    }
   }
 
   centerFlower.draw();
@@ -78,6 +83,33 @@ function draw() {
     if (_p[0]) {
       centerFlower.petalList[_p[0].index].fallOff();
     }
+  }
+}
+
+function mouseMoved() {
+  const _p = [];
+  for (let i = 0; i < centerFlower.petalList.length; i++) {
+    push();
+    translate(width / 2, height / 2 - 100);
+    const petal = centerFlower.petalList[i];
+    const pRotate = createVector(-petal.len / 2 - petal.offset, 0);
+    pRotate.rotate(petal.a);
+    const mousePos = createVector(
+      mouseX - width / 2,
+      mouseY - height / 2 + 100
+    );
+    const d = mousePos.dist(pRotate);
+    if (d <= petal.h / 2) {
+      _p.push({ d, petal });
+    } else {
+      petal.hover(false);
+    }
+    pop();
+  }
+
+  _p.sort((a, b) => a.d - b.d);
+  if (_p && _p.length > 0) {
+    _p[0].petal.hover(true);
   }
 }
 
@@ -149,11 +181,19 @@ class Petal {
     pop();
   }
 
+  setColor(fromColor, toColor) {
+    this.fromColor = fromColor;
+    this.toColor = toColor;
+  }
+
+  setPos(pos) {
+    this.pos = pos.copy();
+  }
+
   update() {
     if (this.isFall) {
       this.t++;
       this.offset += 1;
-
       if (this.t >= 200) {
         this.isAlive = false;
         document.getElementById("value").innerHTML =
@@ -163,9 +203,24 @@ class Petal {
   }
 
   fallOff() {
-    this.isFall = true;
-    this.fromColor.setAlpha(20);
-    this.toColor.setAlpha(20);
+    // this.isFall = true;
+    // this.fromColor.setAlpha(20);
+    // this.toColor.setAlpha(20);
+    this.isAlive = false;
+    document.getElementById("value").innerHTML =
+      centerFlower.petalList.length % 2 ? "LOVES" : "Doesn’t LOVE";
+  }
+
+  hover(isHover) {
+    if (isHover) {
+      this.fromColor.setAlpha(20);
+      this.toColor.setAlpha(20);
+      this.offset = 100;
+    } else {
+      this.fromColor.setAlpha(100);
+      this.toColor.setAlpha(100);
+      this.offset = this.h * 0.28;
+    }
   }
 }
 
@@ -182,6 +237,8 @@ class Flow {
     this.init();
 
     this.lastIndex = petalCount - 1;
+
+    this.vcc = p5.Vector.random2D().mult(random(1, 3));
   }
 
   init() {
@@ -209,6 +266,35 @@ class Flow {
         p.update();
         p.draw();
       }
+    }
+  }
+
+  setColor(fromColor, toColor) {
+    this.fromColor = fromColor;
+    this.toColor = toColor;
+    for (const p of this.petalList) {
+      p.setColor(fromColor, toColor);
+    }
+  }
+
+  update() {
+    this.pos.add(this.vcc);
+
+    if (this.pos.y > height) {
+      this.pos.y = 0;
+    }
+    if (this.pos.y < 0) {
+      this.pos.y = height;
+    }
+    if (this.pos.x < 0) {
+      this.pos.x = width;
+    }
+    if (this.pos.x > width) {
+      this.pos.x = 0;
+    }
+
+    for (const p of this.petalList) {
+      p.setPos(this.pos);
     }
   }
 
